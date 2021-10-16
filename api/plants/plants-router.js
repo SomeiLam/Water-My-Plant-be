@@ -26,7 +26,7 @@ router.get('/:id', restricted, (req, res, next) => {
 })
 
 router.post('/', restricted, checkValidateBody, (req, res, next) => {
-    Plants.addPlant(req.body)
+    Plants.addPlant({ ...req.body, user_id: req.decodedToken.subject })
         .then(plant => {
             res.status(201).json(plant)
         })
