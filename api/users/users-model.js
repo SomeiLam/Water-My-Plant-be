@@ -15,6 +15,12 @@ function findById(id) {
         .first()
 }
 
+function removeUser(id) {
+    return db('users')
+        .where('id', id)
+        .del()
+}
+
 async function add(user) {
     const [newUserObject] = await db('users').insert(user, ['user_id', 'username', 'password'])
     return newUserObject
@@ -25,4 +31,5 @@ module.exports = {
     findBy,
     findById,
     add,
+    removeUser
 };
