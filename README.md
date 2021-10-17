@@ -70,7 +70,7 @@ Errors:
 ```
 
 ## Data Access (users)
-## Get all users
+### Get all users
 ```
 [GET] /users
 ```
