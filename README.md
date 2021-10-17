@@ -69,7 +69,7 @@ Errors:
 }
 ```
 
-## Data Access (users)
+## Users Data Access
 ### Get all users
 ```
 [GET] /users
@@ -127,7 +127,7 @@ Errors:
     "message": "token required"
 }
 ```
-## Data Access (plants)
+## Plants Data Access
 
 ### Get all plants
 ```
@@ -169,7 +169,7 @@ Errors:
     "message": "token required"
 }
 ```
-### Get plants by plants_id
+### Get plant by plants_id
 ```
 [GET] /plants/:id
 ```
