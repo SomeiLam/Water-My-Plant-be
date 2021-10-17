@@ -10,4 +10,12 @@ router.get("/", restricted, (req, res, next) => {
         .catch(next);
 });
 
+router.delete('/:id', restricted, (req, res, next) => {
+    Users.removeUser(req.params.id)
+        .then(() => {
+            res.status(200).json(`user_id ${req.params.id} has been removed`)
+        })
+        .catch(next)
+})
+
 module.exports = router;

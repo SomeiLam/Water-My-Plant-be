@@ -28,12 +28,4 @@ router.post('/login', checkValidateBody, checkUsernameExists, (req, res, next) =
     }
 });
 
-router.delete('/:id', (req, res, next) => {
-    Users.removeUser(req.params.id)
-        .then(() => {
-            res.status(200).json(`user_id ${req.params.id} has been removed`)
-        })
-        .catch(next)
-})
-
 module.exports = router;

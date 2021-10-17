@@ -16,7 +16,7 @@ server.use('/api/users', usersRouter)
 server.use('/api/plants', plantsRouter)
 
 server.use('/', (req, res) => {
-  res.json({ message: 'Plants API' })
+  res.json({ message: 'Water My Plants API' })
 })
 
 server.use((err, req, res, next) => { // eslint-disable-line
