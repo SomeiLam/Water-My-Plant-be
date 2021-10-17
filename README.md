@@ -1,60 +1,350 @@
-# Build Week Scaffolding for Node and PostgreSQL
+# Water My Plants API
 
-## Video Tutorial
+## Base URL
+```
+https://watermyplantsbwweb46.herokuapp.com/api
+```
 
-The following tutorial explains how to set up this project using PostgreSQL and Heroku.
 
-[![Setting up PostgreSQL for Build Week](https://img.youtube.com/vi/kTO_tf4L23I/maxresdefault.jpg)](https://www.youtube.com/watch?v=kTO_tf4L23I)
+## Authentication
 
-## Requirements
+### Login
+```
+[POST] /auth/login
+```
+Parameters:
+```
+{
+    username: [USERNAME],
+    password: [PASSWORD]
+}
+```
+Return:
+```
+{
+    message: "welcome, amy",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImFteSIsInBhc3N3b3JkIjoiJDJhJDA4JC5DRUdseGM5eHlWZm5Ydk93QWkwTGU3emc4NXMzVm01Ymg2Ty5SM3dRY3gzMEp3V1RDRE9PIiwiaWF0IjoxNjM0NTAyNzY1LCJleHAiOjE2MzQ1ODkxNjV9.D6MgNKKjwNeXYR0h3b1K5bulDXEQyPCNpiO-d-9pqAY"
+}
+```
+Errors:
+```
+{
+    "message": "username and password required"
+}
+```
+```
+{
+    "message": "Invalid credentials"
+}
+```
 
-- [PostgreSQL, pgAdmin 4](https://www.postgresql.org/download/) and [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed in your local machine.
-- A Heroku app with the [Heroku PostgreSQL Addon](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres) added to it.
-- Development and testing databases created with [pgAdmin 4](https://www.pgadmin.org/docs/pgadmin4/4.29/database_dialog.html).
+### Register
+```
+[POST] /auth/register
+```
+Parameters:
+```
+{
+    username: [USERNAME],
+    password: [PASSWORD]
+}
+```
+Return:
+```
+{
+    user_id: 1,
+    username: amy,
+    password: "$2a$08$0AJSweO0/q.gPO1zHGUH0.hIkA5D..r2Op3ipP84Oswh5pv/UnOhy"
+}
+```
+Errors:
+```
+{
+    "message": "username and password required"
+}
+```
+```
+{
+    "message": "username taken"
+}
+```
 
-## Starting a New Project
+## Data Access (users)
+## Get all users
+```
+[GET] /users
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Return:
+```
+[
+    {
+        "user_id": 1,
+        "username": "amy",
+        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq",
+        "created_at": "2021-10-17T20:50:56.094Z",
+        "updated_at": "2021-10-17T20:50:56.094Z"
+    },
+    {
+        "user_id": 2,
+        "username": "jujube",
+        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq",
+        "created_at": "2021-10-17T20:50:56.094Z",
+        "updated_at": "2021-10-17T20:50:56.094Z"
+    }
+]
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+### Remove user
+```
+[DELETE] /auth/:id
+```
+Return:
+```
+"user_id 1 has been removed"
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+## Data Access (plants)
 
-- Create a new repository using this template, and clone it to your local.
-- Create a `.env` file and follow the instructions inside `knexfile.js`.
-- Fix the scripts inside `package.json` to use your Heroku app.
+### Get all plants
+```
+[GET] /plants
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Return:
+```
+[
+    {
+        "plants_id": 1,
+        "nickname": "Aloe Vera",
+        "species": "Aloe",
+        "h2oFrequency": "every 3 weeks",
+        "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+        "user_id": 1
+    },
+    {
+        "plants_id": 3,
+        "nickname": "Aloe Vera3",
+        "species": "Aloe3",
+        "h2oFrequency": "every 3 weeks",
+        "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+        "user_id": 1
+    }
+]
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+### Get plants by plants_id
+```
+[GET] /plants/:id
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Return:
+```
+{
+    "plants_id": 1,
+    "nickname": "Aloe Vera",
+    "species": "Aloe",
+    "h2oFrequency": "every 3 weeks",
+    "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+    "user_id": 1
+}
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+### Add a plant
+```
+[POST] /plants
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Parameters:
+```
+{
+    "nickname": "Happy",
+    "species": "Aloe",
+    "h2oFrequency": "every 3 weeks",
+    "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg"
+}
+```
+Return:
+```
+{
+    "plants_id": 4,
+    "nickname": "Happy",
+    "species": "Aloe",
+    "h2oFrequency": "every 3 weeks",
+    "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+    "user_id": 1
+}
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+```
+{
+    "message": "nickname must be provided as a string"
+}
+```
+```
+{
+    "message": "species must be provided as a string"
+}
+```
+```
+{
+    "message": "h2oFrequency must be provided as a string"
+}
+```
 
-## Scripts
-
-- **start**: Runs the app in production.
-- **server**: Runs the app in development.
-- **migrate**: Migrates the local development database to the latest.
-- **rollback**: Rolls back migrations in the local development database.
-- **seed**: Truncates all tables in the local development database, feel free to add more seed files.
-- **test**: Runs tests.
-- **deploy**: Deploys the main branch to Heroku.
-
-**The following scripts NEED TO BE EDITED before using: replace `YOUR_HEROKU_APP_NAME`**
-
-- **migrateh**: Migrates the Heroku database to the latest.
-- **rollbackh**: Rolls back migrations in the Heroku database.
-- **databaseh**: Interact with the Heroku database from the command line using psql.
-- **seedh**: Runs all seeds in the Heroku database.
-
-## Hot Tips
-
-- Figure out the connection to the database and deployment before writing any code.
-
-- If you need to make changes to a migration file that has already been released to Heroku, follow this sequence:
-
-  1. Roll back migrations in the Heroku database
-  2. Deploy the latest code to Heroku
-  3. Migrate the Heroku database to the latest
-
-- If your frontend devs are clear on the shape of the data they need, you can quickly build provisional endpoints that return mock data. They shouldn't have to wait for you to build the entire backend.
-
-- Keep your endpoints super lean: the bulk of the code belongs inside models and other middlewares.
-
-- Validating and sanitizing client data using a library is much less work than doing it manually.
-
-- Revealing crash messages to clients is a security risk, but during development it's helpful if your frontend devs are able to tell you what crashed.
-
-- PostgreSQL comes with [fantastic built-in functions](https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql) for hammering rows into whatever JSON shape.
-
-- If you want to edit a migration that has already been released but don't want to lose all the data, make a new migration instead. This is a more realistic flow for production apps: prod databases are never migrated down. We can migrate Heroku down freely only because there's no valuable data from customers in it. In this sense, Heroku is acting more like a staging environment than production.
-
-- If your fronted devs are interested in running the API locally, help them set up PostgreSQL & pgAdmin in their machines, and teach them how to run migrations in their local. This empowers them to (1) help you troubleshoot bugs, (2) obtain the latest code by simply doing `git pull` and (3) work with their own data, without it being wiped every time you roll back the Heroku db. Collaboration is more fun and direct, and you don't need to deploy as often.
+### Edit a plant by plants_id
+```
+[PUT] /plants/:id
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Parameters:
+```
+{
+    "nickname": "Happy",
+    "species": "Aloe",
+    "h2oFrequency": "every 3 weeks",
+    "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg"
+}
+```
+Return:
+```
+{
+    "plants_id": 4,
+    "nickname": "Greeeeen",
+    "species": "Aloe",
+    "h2oFrequency": "every 3 weeks",
+    "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+    "user_id": 1
+}
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
+```
+{
+    "message": "nickname must be provided as a string"
+}
+```
+```
+{
+    "message": "species must be provided as a string"
+}
+```
+```
+{
+    "message": "h2oFrequency must be provided as a string"
+}
+```
+### Remove a plant by plants_id
+```
+[DELETE] /plants/:id
+```
+Headers:
+```
+authorization: [TOKEN]
+```
+Return:
+```
+[
+    {
+        "plants_id": 1,
+        "nickname": "Aloe Vera",
+        "species": "Aloe",
+        "h2oFrequency": "every 3 weeks",
+        "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+        "user_id": 1
+    },
+    {
+        "plants_id": 3,
+        "nickname": "Aloe Vera3",
+        "species": "Aloe3",
+        "h2oFrequency": "every 3 weeks",
+        "image": "https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg",
+        "user_id": 1
+    }
+]
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
