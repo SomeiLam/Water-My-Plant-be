@@ -11,24 +11,24 @@ const users = [
 
 const plants = [
     {
-        nickname: 'Aloe Vera',
+        nickname: 'Jelly',
         species: 'Aloe',
         h2oFrequency: 'every 3 weeks',
-        image: 'https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg',
+        image: 'https://image.shutterstock.com/image-photo/small-aloe-cactus-white-pot-600w-263617586.jpg',
         user_id: 1
     },
     {
-        nickname: 'Aloe Vera2',
-        species: 'Aloe2',
+        nickname: 'Greeen',
+        species: 'Aloe',
         h2oFrequency: 'every 3 weeks',
-        image: 'https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg',
+        image: 'https://image.shutterstock.com/image-photo/aloe-vera-herb-that-can-600w-200104898.jpg',
         user_id: 2
     },
     {
-        nickname: 'Aloe Vera3',
-        species: 'Aloe3',
+        nickname: 'dotdot',
+        species: 'Aloe',
         h2oFrequency: 'every 3 weeks',
-        image: 'https://freecgaxisimg.ams3.cdn.digitaloceanspaces.com/2014/11/cgaxis_models_21_20b.jpg',
+        image: 'https://image.shutterstock.com/image-photo/aloe-albica-on-window-decorative-600w-500708329.jpg',
         user_id: 1
     }
 ]

@@ -110,7 +110,7 @@ Errors:
 ```
 ### Remove user
 ```
-[DELETE] /auth/:id
+[DELETE] /users/:id
 ```
 Return:
 ```
