@@ -17,8 +17,8 @@ const restricted = (req, res, next) => {
 }
 
 const checkValidateBody = (req, res, next) => {
-    if (req.body.username === undefined || req.body.password === undefined) {
-        next({ status: 422, message: 'username and password required' })
+    if (req.body.username === undefined || req.body.password === undefined || req.body.phonenumber === undefined) {
+        next({ status: 422, message: 'username, password and phone number are required' })
     } else {
         next()
     }
