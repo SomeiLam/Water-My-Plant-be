@@ -2,10 +2,12 @@ const users = [
     {
         username: 'amy',
         password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', // 1234
+        phonenumber: '12345678'
     },
     {
         username: 'jujube',
         password: '$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq', // 1234
+        phonenumber: '23456789'
     }
 ]
 
