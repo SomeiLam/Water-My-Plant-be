@@ -2,7 +2,7 @@
 
 ## Base URL
 ```
-https://watermyplantsbwweb46.herokuapp.com/api
+https://watermyplantsweb46.herokuapp.com
 ```
 
 
