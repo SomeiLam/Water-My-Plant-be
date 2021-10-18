@@ -16,7 +16,8 @@ Parameters:
 ```
 {
     username: [USERNAME],
-    password: [PASSWORD]
+    password: [PASSWORD],
+    phonenumber: [PHONENUMBER]
 }
 ```
 Return:
@@ -29,7 +30,7 @@ Return:
 Errors:
 ```
 {
-    "message": "username and password required"
+    "message": "username, password and phone number are required"
 }
 ```
 ```
@@ -46,7 +47,8 @@ Parameters:
 ```
 {
     username: [USERNAME],
-    password: [PASSWORD]
+    password: [PASSWORD],
+    phonenumber: [PHONENUMBER]
 }
 ```
 Return:
@@ -60,7 +62,7 @@ Return:
 Errors:
 ```
 {
-    "message": "username and password required"
+    "message": "username, password and phone number are required"
 }
 ```
 ```
@@ -84,16 +86,26 @@ Return:
     {
         "user_id": 1,
         "username": "amy",
-        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq",
-        "created_at": "2021-10-17T20:50:56.094Z",
-        "updated_at": "2021-10-17T20:50:56.094Z"
+        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq", // 1234
+        "phonenumber": "12345678",
+        "created_at": "2021-10-18T17:01:19.774Z",
+        "updated_at": "2021-10-18T17:01:19.774Z"
     },
     {
         "user_id": 2,
         "username": "jujube",
-        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq",
-        "created_at": "2021-10-17T20:50:56.094Z",
-        "updated_at": "2021-10-17T20:50:56.094Z"
+        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq", // 1234
+        "phonenumber": "23456789",
+        "created_at": "2021-10-18T17:01:19.774Z",
+        "updated_at": "2021-10-18T17:01:19.774Z"
+    },
+    {
+        "user_id": 3,
+        "username": "brownie",
+        "password": "$2a$08$jWgDw19Zl8XQiFY/XPjFiehF0ClOwBk/iMHAFrz153rt137.BWzLm", // 1234
+        "phonenumber": "11111111",
+        "created_at": "2021-10-18T17:09:18.955Z",
+        "updated_at": "2021-10-18T17:09:18.955Z"
     }
 ]
 ```
