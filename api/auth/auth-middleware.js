@@ -16,7 +16,15 @@ const restricted = (req, res, next) => {
     })
 }
 
-const checkValidateBody = (req, res, next) => {
+const checkValidateBodyforLogin = (req, res, next) => {
+    if (req.body.username === undefined || req.body.password === undefined) {
+        next({ status: 422, message: 'username and password are required' })
+    } else {
+        next()
+    }
+}
+
+const checkValidateBodyforRegister = (req, res, next) => {
     if (req.body.username === undefined || req.body.password === undefined || req.body.phonenumber === undefined) {
         next({ status: 422, message: 'username, password and phone number are required' })
     } else {
@@ -54,7 +62,8 @@ const checkUsernameExists = async (req, res, next) => {
 
 module.exports = {
     restricted,
-    checkValidateBody,
+    checkValidateBodyforLogin,
+    checkValidateBodyforRegister,
     checkUsernameFree,
     checkUsernameExists,
 }
