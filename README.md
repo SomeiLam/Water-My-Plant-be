@@ -10,7 +10,7 @@ https://watermyplantsweb46.herokuapp.com
 
 ### Login
 ```
-[POST] /auth/login
+[POST] /api/auth/login
 ```
 Parameters:
 ```
@@ -41,7 +41,7 @@ Errors:
 
 ### Register
 ```
-[POST] /auth/register
+[POST] /api/auth/register
 ```
 Parameters:
 ```
@@ -74,7 +74,7 @@ Errors:
 ## Users Data Access
 ### Get all users
 ```
-[GET] /users
+[GET] /api/users
 ```
 Headers:
 ```
@@ -122,7 +122,7 @@ Errors:
 ```
 ### Remove user
 ```
-[DELETE] /users/:id
+[DELETE] /api/users/:id
 ```
 Return:
 ```
@@ -143,7 +143,7 @@ Errors:
 
 ### Get all plants
 ```
-[GET] /plants
+[GET] /api/plants
 ```
 Headers:
 ```
@@ -183,7 +183,7 @@ Errors:
 ```
 ### Get plant by plants_id
 ```
-[GET] /plants/:id
+[GET] /api/plants/:id
 ```
 Headers:
 ```
@@ -213,7 +213,7 @@ Errors:
 ```
 ### Add a plant
 ```
-[POST] /plants
+[POST] /api/plants
 ```
 Headers:
 ```
@@ -268,7 +268,7 @@ Errors:
 
 ### Edit a plant by plants_id
 ```
-[PUT] /plants/:id
+[PUT] /api/plants/:id
 ```
 Headers:
 ```
@@ -322,7 +322,7 @@ Errors:
 ```
 ### Remove a plant by plants_id
 ```
-[DELETE] /plants/:id
+[DELETE] /api/plants/:id
 ```
 Headers:
 ```
