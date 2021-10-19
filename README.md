@@ -30,7 +30,7 @@ Return:
 Errors:
 ```
 {
-    "message": "username, password and phone number are required"
+    "message": "username and password are required"
 }
 ```
 ```
