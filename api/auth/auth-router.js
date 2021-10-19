@@ -4,7 +4,7 @@ const { checkValidateBodyforLogin, checkValidateBodyforRegister, checkUsernameFr
 const buildToken = require('./token-builder')
 const Users = require('../users/users-model')
 
-router.post('/register', checkValidateBodyforLogin, checkUsernameFree, (req, res, next) => {
+router.post('/register', checkValidateBodyforRegister, checkUsernameFree, (req, res, next) => {
     let user = req.body
     const rounds = process.env.BCRYPT_ROUNDS || 8
     const hash = bcrypt.hashSync(user.password, rounds)
@@ -16,7 +16,7 @@ router.post('/register', checkValidateBodyforLogin, checkUsernameFree, (req, res
         .catch(next)
 });
 
-router.post('/login', checkValidateBodyforRegister, checkUsernameExists, (req, res, next) => {
+router.post('/login', checkValidateBodyforLogin, checkUsernameExists, (req, res, next) => {
     if (bcrypt.compareSync(req.body.password, req.user.password)) {
         const token = buildToken(req.user)
         res.status(200).json({
