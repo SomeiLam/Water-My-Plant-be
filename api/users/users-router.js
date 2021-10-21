@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const bcrypt = require('bcryptjs')
 const Users = require("./users-model.js");
 const { restricted } = require('../auth/auth-middleware.js')
 
@@ -19,7 +20,11 @@ router.delete('/:id', restricted, (req, res, next) => {
 })
 
 router.put('/', restricted, (req, res, next) => {
-    Users.update(req.decodedToken.subject, req.body)
+    let user = req.body
+    const rounds = process.env.BCRYPT_ROUNDS || 8
+    const hash = bcrypt.hashSync(user.password, rounds)
+    user.password = hash
+    Users.update(req.decodedToken.subject, user)
         .then(user => {
             res.status(200).json(user)
         })
