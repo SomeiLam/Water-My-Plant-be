@@ -18,4 +18,12 @@ router.delete('/:id', restricted, (req, res, next) => {
         .catch(next)
 })
 
+router.put('/', restricted, (req, res, next) => {
+    Users.update(req.decodedToken.subject, req.body)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(next)
+})
+
 module.exports = router;

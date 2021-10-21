@@ -26,10 +26,18 @@ async function add(user) {
     return newUserObject
 }
 
+async function update(user_id, user) {
+    await db('users')
+        .where({ 'user_id': user_id })
+        .update(user)
+    return findById(user_id)
+}
+
 module.exports = {
     getUsers,
     findBy,
     findById,
     add,
-    removeUser
+    removeUser,
+    update
 };
