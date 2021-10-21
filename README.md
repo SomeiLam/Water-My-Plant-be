@@ -139,6 +139,32 @@ Errors:
     "message": "token required"
 }
 ```
+### Update user
+```
+[PUT] /api/users
+```
+Return:
+```
+    {
+        "user_id": 1,
+        "username": "amy",
+        "password": "1234",
+        "phonenumber": "00000000",
+        "created_at": "2021-10-18T17:01:19.774Z",
+        "updated_at": "2021-10-18T17:01:19.774Z"
+    }
+```
+Errors:
+```
+{
+    "message": "token invalid"
+}
+```
+```
+{
+    "message": "token required"
+}
+```
 ## Plants Data Access
 
 ### Get all plants
